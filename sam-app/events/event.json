@@ -1,5 +1,5 @@
 {
-  "body": "{\"message\": \"hello world aws\"}",
+  "body": "{\"message\": \"hello world aws prueba\"}",
   "resource": "/{proxy+}",
   "path": "/path/to/resource",
   "httpMethod": "POST",
