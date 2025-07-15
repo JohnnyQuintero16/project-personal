@@ -5,14 +5,13 @@ phases:
     runtime-versions:
       nodejs: 18
     commands:
-      - npm install -g aws-sam-cli
+      - echo "Instalando dependencias backend"
       - npm install
   build:
     commands:
+      - echo "Construyendo con SAM"
       - sam build
-      - sam package \
-          --output-template-file packaged-template.yaml \
-          --s3-bucket codepipeline-us-east-1-0eedfc749c34-4a12-a6b0-8f4ec0284859
-artifacts:
-  files:
-    - packaged-template.yaml
+  post_build:
+    commands:
+      - echo "Empaquetando SAM"
+      - sam package --output-template-file packaged.yaml --s3-bucket codepipeline-us-east-1-0eedfc749c34-4a12-a6b0-8f4ec0284859
