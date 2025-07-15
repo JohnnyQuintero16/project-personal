@@ -1,0 +1,18 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+    commands:
+      - npm install -g aws-sam-cli
+      - npm install
+  build:
+    commands:
+      - sam build
+      - sam package \
+          --output-template-file packaged-template.yaml \
+          --s3-bucket codepipeline-us-east-1-0eedfc749c34-4a12-a6b0-8f4ec0284859
+artifacts:
+  files:
+    - packaged-template.yaml
