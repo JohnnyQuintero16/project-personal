@@ -5,11 +5,13 @@ phases:
     runtime-versions:
       nodejs: 18
     commands:
+      - cd sam-app/hello-world
       - echo "Instalando dependencias backend"
       - npm install
   build:
     commands:
       - echo "Construyendo con SAM"
+      - cd ../../
       - sam build
   post_build:
     commands:
