@@ -13,6 +13,8 @@ phases:
       - echo "Construyendo con SAM"
       - cd ../../
       - sam build
+      - echo "Contenido de .aws-sam/build"
+      - ls -la .aws-sam/build
   post_build:
     commands:
       - echo "Empaquetando SAM"
