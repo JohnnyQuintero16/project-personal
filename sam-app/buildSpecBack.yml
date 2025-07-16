@@ -10,12 +10,21 @@ phases:
       - npm install
   build:
     commands:
-      - echo "Construyendo con SAM"
+      - echo "Volviendo al root"
       - cd ../../
-      - sam build
-      - echo "Contenido de .aws-sam/build"
-      - ls -la .aws-sam/build
+      - echo "Mostrando estructura antes del build"
+      - find .
+      - echo "Construyendo con SAM"
+      - sam build --template sam-app/template.yaml
   post_build:
     commands:
+      - echo "Mostrando contenido de .aws-sam"
+      - find .aws-sam/
       - echo "Empaquetando SAM"
-      - sam package --output-template-file packaged.yaml --s3-bucket codepipeline-us-east-1-0eedfc749c34-4a12-a6b0-8f4ec0284859
+      - sam package \
+          --template-file .aws-sam/build/template.yaml \
+          --output-template-file packaged.yaml \
+          --s3-bucket codepipeline-us-east-1-0eedfc749c34-4a12-a6b0-8f4ec0284859
+artifacts:
+  files:
+    - packaged.yaml
