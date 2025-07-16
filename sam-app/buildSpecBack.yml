@@ -21,10 +21,9 @@ phases:
       - echo "Mostrando contenido de .aws-sam"
       - find .aws-sam/
       - echo "Empaquetando SAM"
-      - sam package \
-          --template-file .aws-sam/build/template.yaml \
-          --output-template-file packaged.yaml \
-          --s3-bucket codepipeline-us-east-1-0eedfc749c34-4a12-a6b0-8f4ec0284859
+      - echo "Empaquetando SAM"
+      - sam package --template-file .aws-sam/build/template.yaml --output-template-file packaged.yaml --s3-bucket codepipeline-us-east-1-0eedfc749c34-4a12-a6b0-8f4ec0284859
+
 artifacts:
   files:
     - packaged.yaml
